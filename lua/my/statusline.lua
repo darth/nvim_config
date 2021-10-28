@@ -8,8 +8,8 @@ require'lualine'.setup {
       },
       lualine_z = {{'location', icon = ''}}
     },
-    section_separators = {'', ''},
-    component_separators = {'', ''}
+    section_separators = {left = '', right = ''},
+    component_separators = {left = '', right = ''}
   },
   extension = {'fzf'}
 }
