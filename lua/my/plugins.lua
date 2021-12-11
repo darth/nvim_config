@@ -2,7 +2,7 @@ local fn = vim.fn
 local cmd = vim.cmd
 
 cmd 'packadd paq-nvim'
-local paq = require'paq-nvim'.paq
+local paq = require'paq'.paq
 paq {'savq/paq-nvim', opt = true}
 
 paq 'tweekmonster/startuptime.vim'
