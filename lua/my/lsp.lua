@@ -1,12 +1,10 @@
 local fn = vim.fn
 local api = vim.api
 
-api.nvim_exec([[
-  sign define LspDiagnosticsSignError text=✘ texthl=LspDiagnosticsError
-  sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsWarning
-  sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsInformation
-  sign define LspDiagnosticsSignHint text=➤ texthl=LspDiagnosticsHint
-]], false)
+vim.fn.sign_define("DiagnosticSignError", {text = "", texthl = "LspDiagnosticsError"})
+vim.fn.sign_define("DiagnosticSignWarn", {text = "", texthl = "LspDiagnosticsWarning"})
+vim.fn.sign_define("DiagnosticSignInformation", {text = "", texthl = "LspDiagnosticsInformation"})
+vim.fn.sign_define("DiagnosticSignHint", {text = "", texthl = "LspDiagnosticsHint"})
 
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
