@@ -68,7 +68,7 @@ require'indent_guides'.setup {
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
-    'bash', 'c', 'cpp', 'css', 'go', 'json', 'lua', 'python',
+    'bash', 'c', 'cpp', 'css', 'go', 'json', 'yaml', 'lua', 'python', 'rust',
   },
   highlight = {enable = true, disable = {}}
 }
