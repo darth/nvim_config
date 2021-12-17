@@ -45,6 +45,7 @@ paq 'tweekmonster/braceless.vim'
 paq 'othree/javascript-libraries-syntax.vim'
 paq 'yuezk/vim-js'
 paq 'maxmellon/vim-jsx-pretty'
+paq 'nfnty/vim-nftables'
 
 paq 'vim-scripts/modelica'
 paq 'bohlender/vim-smt2'
