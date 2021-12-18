@@ -15,6 +15,7 @@ paq 'tpope/vim-surround'
 paq 'tpope/vim-fugitive'
 paq 'tpope/vim-obsession'
 paq 'tpope/vim-projectionist'
+paq 'tpope/vim-eunuch'
 paq 'tpope/vim-dispatch'
 paq 'radenling/vim-dispatch-neovim'
 
