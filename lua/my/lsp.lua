@@ -27,9 +27,9 @@ local on_attach = function(client, bufnr)
   map('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   map('n', '<space>e',
-      '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+      '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   map('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
