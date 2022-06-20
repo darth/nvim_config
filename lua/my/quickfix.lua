@@ -12,12 +12,14 @@ augroup('qf', {
   {'WinEnter', '*', 'if winnr("$") == 1 && !buflisted(bufnr("")) | q | endif'}
 })
 
+
 local function toggle(type, focus)
   local function numqf()
     local n = 0
     for i = 1, fn.bufnr('$') do
-      if fn.bufexists(i) and fn.getbufvar(i, '&bt') == 'quickfix' then
+      if fn.bufexists(i) and fn.getbufvar(i, '&bt') == 'quickfix' and fn.bufwinnr(i) >= 0 then
         n = n + 1
+        print(i)
       end
     end
     return n
@@ -52,4 +54,4 @@ map('n', '<leader>L',
     '<cmd>lua require("my.quickfix").toggle("location", true)<CR>',
     {silent = true})
 
-return {toggle = toggle}
+return {toggle = toggle, numqf = numqf}
