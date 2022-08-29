@@ -19,7 +19,6 @@ local function toggle(type, focus)
     for i = 1, fn.bufnr('$') do
       if fn.bufexists(i) and fn.getbufvar(i, '&bt') == 'quickfix' and fn.bufwinnr(i) >= 0 then
         n = n + 1
-        print(i)
       end
     end
     return n
