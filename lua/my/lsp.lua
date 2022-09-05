@@ -1,15 +1,14 @@
-local fn = vim.fn
 local api = vim.api
 
-vim.fn.sign_define("DiagnosticSignError", {text = "", texthl = "LspDiagnosticsError"})
-vim.fn.sign_define("DiagnosticSignWarn", {text = "", texthl = "LspDiagnosticsWarning"})
-vim.fn.sign_define("DiagnosticSignInformation", {text = "", texthl = "LspDiagnosticsInformation"})
-vim.fn.sign_define("DiagnosticSignHint", {text = "", texthl = "LspDiagnosticsHint"})
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "LspDiagnosticsError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "LspDiagnosticsWarning" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "LspDiagnosticsInformation" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "LspDiagnosticsHint" })
 
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
   -- Mappings.
-  local opts = {buffer = bufnr, silent = true}
+  local opts = { buffer = bufnr, silent = true }
   local map = require('my.utils').map
   map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -19,15 +18,15 @@ local on_attach = function(client, bufnr)
   map('n', '<space>s', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
   map('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   map('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-      opts)
+    opts)
   map('n', '<space>wl',
-      '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-      opts)
+    '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+    opts)
   map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   map('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   map('n', '<space>e',
-      '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   map('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
@@ -59,28 +58,28 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = {'pyright', 'sourcegraph_js', 'yamlls', 'jsonls'}
-for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach, capabilities = capabilities} end
+local servers = { 'pyright', 'sourcegraph_js', 'yamlls', 'jsonls' }
+for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = capabilities } end
 
 local rustfmt_settings = {
-  extraArgs = {'+nightly'},
-  rangeFormatting = {enable = true}
+  extraArgs = { '+nightly' },
+  rangeFormatting = { enable = true }
 }
 
 nvim_lsp['rust_analyzer'].setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  init_options = {rustfmt = rustfmt_settings},
-  settings = {['rust-analyzer'] = {rustfmt = rustfmt_settings}}
+  init_options = { rustfmt = rustfmt_settings },
+  settings = { ['rust-analyzer'] = { rustfmt = rustfmt_settings } }
 }
 
 nvim_lsp['ccls'].setup {
   capabilities = capabilities,
   init_options = {
     compilationDatabaseDirectory = 'build',
-    cache = {directory = '/tmp/ccls-cache'},
-    highlight = {lsRanges = true},
-    client = {snippetSupport = true}
+    cache = { directory = '/tmp/ccls-cache' },
+    highlight = { lsRanges = true },
+    client = { snippetSupport = true }
   },
   on_attach = on_attach
 }
@@ -93,7 +92,7 @@ nvim_lsp['sumneko_lua'].setup {
         version = 'LuaJIT',
       },
       diagnostics = {
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
