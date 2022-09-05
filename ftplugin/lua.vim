@@ -1,2 +1,0 @@
-
-setlocal formatprg=lua-format
