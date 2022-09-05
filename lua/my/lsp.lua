@@ -59,8 +59,20 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = {'pyright', 'sourcegraph_js', 'rust_analyzer', 'yamlls', 'jsonls'}
+local servers = {'pyright', 'sourcegraph_js', 'yamlls', 'jsonls'}
 for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach, capabilities = capabilities} end
+
+local rustfmt_settings = {
+  extraArgs = {'+nightly'},
+  rangeFormatting = {enable = true}
+}
+
+nvim_lsp['rust_analyzer'].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  init_options = {rustfmt = rustfmt_settings},
+  settings = {['rust-analyzer'] = {rustfmt = rustfmt_settings}}
+}
 
 nvim_lsp['ccls'].setup {
   capabilities = capabilities,
