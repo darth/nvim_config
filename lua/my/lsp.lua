@@ -85,33 +85,30 @@ nvim_lsp['ccls'].setup {
   on_attach = on_attach
 }
 
-if vim.env.LUA_LS_ROOT then
-  local sys_name
-  if fn.has('mac') == 1 then
-    sys_name = 'macOS'
-  elseif fn.has('unix') then
-    sys_name = 'Linux'
-  elseif fn.has('win32') then
-    sys_name = 'Windows'
-  else
-    print('Unsupported system for sumneko')
-  end
-  local srv_root = fn.expand('$LUA_LS_ROOT')
-  local srv_bin = srv_root .. '/bin/' .. sys_name .. '/lua-language-server'
-  nvim_lsp['sumneko_lua'].setup {
-    cmd = {srv_bin, "-E", srv_root .. '/main.lua'},
-    settings = {
-      Lua = {
-        runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-        diagnostics = {globals = {'vim'}},
-        workspace = {
-          library = {
-            [fn.expand('$VIMRUNTIME/lua')] = true,
-            [fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-          }
-        }
-      }
+nvim_lsp['sumneko_lua'].setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+        },
+      },
     },
-    on_attach = on_attach
-  }
-end
+  },
+  on_attach = on_attach
+}
