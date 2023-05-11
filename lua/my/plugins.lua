@@ -26,8 +26,6 @@ paq 'kana/vim-textobj-entire'
 paq 'andymass/vim-matchup'
 paq 'alvan/vim-closetag'
 
--- paq 'glepnir/indent-guides.nvim'
--- paq 'nvimdev/indentmini.nvim'
 paq 'lukas-reineke/indent-blankline.nvim'
 paq 'kyazdani42/nvim-web-devicons'
 paq 'akinsho/nvim-bufferline.lua'
