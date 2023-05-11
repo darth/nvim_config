@@ -84,7 +84,7 @@ nvim_lsp['ccls'].setup {
   on_attach = on_attach
 }
 
-nvim_lsp['sumneko_lua'].setup {
+nvim_lsp['lua_ls'].setup {
   capabilities = capabilities,
   settings = {
     Lua = {
