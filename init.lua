@@ -59,11 +59,20 @@ cmd 'runtime fzf.vim'
 
 env.VISUAL = 'nvr -cc split --remote-wait +"set bufhidden=wipe"'
 
-require'indent_guides'.setup {
-  indent_guide_size = 4,
-  even_colors = {fg = '#3B4252', bg = '#3B4252'},
-  odd_colors = {fg = '#434C5E', bg = '#434C5E'},
-  exclude_filetypes = {'ToggleTerminal', 'help'}
+vim.cmd [[highlight IndentBlanklineIndent1 guibg=#3B4252 gui=nocombine]]
+vim.cmd [[highlight IndentBlanklineIndent2 guibg=#434C5E gui=nocombine]]
+
+require("indent_blankline").setup {
+    char = "",
+    char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+    },
+    space_char_highlight_list = {
+        "IndentBlanklineIndent1",
+        "IndentBlanklineIndent2",
+    },
+    show_trailing_blankline_indent = false,
 }
 
 require'nvim-treesitter.configs'.setup {
