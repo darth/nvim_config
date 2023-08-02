@@ -51,10 +51,6 @@ paq 'nfnty/vim-nftables'
 paq 'vim-scripts/modelica'
 paq 'bohlender/vim-smt2'
 paq 'wannesm/wmnusmv.vim'
-paq {
-  'mclab/vim-properties-syntax',
-  url = 'https://bitbucket.org/mclab/vim-properties-syntax'
-}
 
 paq {
   'nvim-treesitter/nvim-treesitter',
