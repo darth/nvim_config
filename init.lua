@@ -62,17 +62,21 @@ env.VISUAL = 'nvr -cc split --remote-wait +"set bufhidden=wipe"'
 vim.cmd [[highlight IndentBlanklineIndent1 guibg=#3B4252 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent2 guibg=#434C5E gui=nocombine]]
 
-require("indent_blankline").setup {
-    char = "",
-    char_highlight_list = {
+require("ibl").setup {
+    indent = {
+      char = "",
+      highlight = {
         "IndentBlanklineIndent1",
         "IndentBlanklineIndent2",
+      },
     },
-    space_char_highlight_list = {
+    whitespace = {
+      highlight = {
         "IndentBlanklineIndent1",
         "IndentBlanklineIndent2",
+      },
+      remove_blankline_trail = false,
     },
-    show_trailing_blankline_indent = false,
 }
 
 require'nvim-treesitter.configs'.setup {
