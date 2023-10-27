@@ -2,68 +2,71 @@ local fn = vim.fn
 local cmd = vim.cmd
 
 cmd 'packadd paq-nvim'
-local paq = require'paq'.paq
-paq {'savq/paq-nvim', opt = true}
 
-paq 'tweekmonster/startuptime.vim'
-
-paq 'arcticicestudio/nord-vim'
-
-paq 'tpope/vim-commentary'
-paq 'tpope/vim-repeat'
-paq 'tpope/vim-surround'
-paq 'tpope/vim-fugitive'
-paq 'tpope/vim-obsession'
-paq 'tpope/vim-projectionist'
-paq 'tpope/vim-eunuch'
-paq 'tpope/vim-dispatch'
-paq 'radenling/vim-dispatch-neovim'
-
-paq 'kana/vim-textobj-user'
-paq 'kana/vim-textobj-function'
-paq 'kana/vim-textobj-entire'
-
-paq 'andymass/vim-matchup'
-paq 'alvan/vim-closetag'
-
-paq 'lukas-reineke/indent-blankline.nvim'
-paq 'kyazdani42/nvim-web-devicons'
-paq 'akinsho/nvim-bufferline.lua'
-paq 'hoob3rt/lualine.nvim'
-paq 'psliwka/vim-smoothie'
-
-paq 'junegunn/fzf'
-paq 'junegunn/fzf.vim'
-
-paq 'mhinz/vim-grepper'
-
-paq 'vim-utils/vim-husk'
-paq 'editorconfig/editorconfig-vim'
-
-paq 'pboettch/vim-cmake-syntax'
-paq 'lifepillar/pgsql.vim'
-paq 'tweekmonster/braceless.vim'
-paq 'othree/javascript-libraries-syntax.vim'
-paq 'yuezk/vim-js'
-paq 'maxmellon/vim-jsx-pretty'
-paq 'nfnty/vim-nftables'
-
-paq 'vim-scripts/modelica'
-paq 'bohlender/vim-smt2'
-paq 'wannesm/wmnusmv.vim'
+local paq = require 'paq'
 
 paq {
-  'nvim-treesitter/nvim-treesitter',
-  run = function() return cmd 'TSUpdate' end
+  'savq/paq-nvim',
+
+  'tweekmonster/startuptime.vim',
+
+  'arcticicestudio/nord-vim',
+
+  'tpope/vim-commentary',
+  'tpope/vim-repeat',
+  'tpope/vim-surround',
+  'tpope/vim-fugitive',
+  'tpope/vim-obsession',
+  'tpope/vim-projectionist',
+  'tpope/vim-eunuch',
+  'tpope/vim-dispatch',
+  'radenling/vim-dispatch-neovim',
+
+  'kana/vim-textobj-user',
+  'kana/vim-textobj-function',
+  'kana/vim-textobj-entire',
+
+  'andymass/vim-matchup',
+  'alvan/vim-closetag',
+
+  'lukas-reineke/indent-blankline.nvim',
+  'kyazdani42/nvim-web-devicons',
+  'akinsho/nvim-bufferline.lua',
+  'hoob3rt/lualine.nvim',
+  'psliwka/vim-smoothie',
+
+  'junegunn/fzf',
+  'junegunn/fzf.vim',
+
+  'mhinz/vim-grepper',
+
+  'vim-utils/vim-husk',
+  'editorconfig/editorconfig-vim',
+
+  'pboettch/vim-cmake-syntax',
+  'lifepillar/pgsql.vim',
+  'tweekmonster/braceless.vim',
+  'othree/javascript-libraries-syntax.vim',
+  'yuezk/vim-js',
+  'maxmellon/vim-jsx-pretty',
+  'nfnty/vim-nftables',
+
+  'vim-scripts/modelica',
+  'bohlender/vim-smt2',
+  'wannesm/wmnusmv.vim',
+
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 }
 
 if (vim.env.DEVMODE) then
-  paq 'neovim/nvim-lspconfig'
-  paq 'onsails/lspkind-nvim'
-  paq 'ojroques/nvim-lspfuzzy'
-  paq 'hrsh7th/vim-vsnip'
-  paq 'hrsh7th/nvim-compe'
-  paq 'squareys/vim-cmake'
-  paq 'lervag/vimtex'
-  paq {'iamcco/markdown-preview.nvim', run = fn['mkdp#util#install']}
+  paq {
+    'neovim/nvim-lspconfig',
+    'onsails/lspkind-nvim',
+    'ojroques/nvim-lspfuzzy',
+    'hrsh7th/vim-vsnip',
+    'hrsh7th/nvim-compe',
+    'squareys/vim-cmake',
+    'lervag/vimtex',
+    {'iamcco/markdown-preview.nvim', build = fn['mkdp#util#install']},
+  }
 end
