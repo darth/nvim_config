@@ -5,7 +5,7 @@ cmd 'packadd paq-nvim'
 
 local paq = require 'paq'
 
-paq {
+local plugins = {
   'savq/paq-nvim',
 
   'tweekmonster/startuptime.vim',
@@ -58,8 +58,10 @@ paq {
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 }
 
+local plugins_all = {unpack(plugins)}
+
 if (vim.env.DEVMODE) then
-  paq {
+  local plugins_dev = {
     'neovim/nvim-lspconfig',
     'onsails/lspkind-nvim',
     'ojroques/nvim-lspfuzzy',
@@ -69,4 +71,9 @@ if (vim.env.DEVMODE) then
     'lervag/vimtex',
     {'iamcco/markdown-preview.nvim', build = fn['mkdp#util#install']},
   }
+  table.move(plugins_dev, 1, #plugins_dev, #plugins_all + 1, plugins_all)
 end
+
+paq {
+  unpack(plugins_all)
+}
