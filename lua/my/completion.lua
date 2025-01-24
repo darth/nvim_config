@@ -1,40 +1,42 @@
-local g = vim.g
-local utils = require 'my.utils'
-local o = utils.opts.o
-local map = utils.map
+local cmp = require'cmp'
+local luasnip = require'luasnip'
 
-o.completeopt = 'menuone,noselect'
-
-g.loaded_compe_snippets_nvim = true
-g.loaded_compe_treesitter = true
-g.loaded_compe_spell = true
-g.loaded_compe_vim_lsc = true
-g.loaded_compe_vim_lsp = true
-g.loaded_compe_tags = true
-g.loaded_compe_calc = true
-g.loaded_compe_ultisnips = true
-g.loaded_compe_path = true
-g.loaded_compe_omni = true
-
-require'compe'.setup {
-  max_abbr_width = 50,
-  max_kind_width = 50,
-  max_menu_width = 50,
-  source = {buffer = true, vsnip = true, nvim_lsp = true, nvim_lua = true}
-}
-
-return {
-  setup = function(args)
-    map('i', args.complete, 'compe#complete()', {expr = true, silent = true})
-    map('i', args.confirm, 'compe#confirm("' .. args.confirm .. '")',
-        {expr = true, silent = true})
-    map('i', args.close, 'compe#close("' .. args.close .. '")',
-        {expr = true, silent = true})
-    map('is', args.snip_next,
-        'vsnip#jumpable(1) ? "<Plug>(vsnip-jump-next)" : "' .. args.snip_next ..
-            '"', {expr = true, noremap = false, silent = true})
-    map('is', args.snip_prev,
-        'vsnip#jumpable(-1) ? "<Plug>(vsnip-jump-prev)" : "' .. args.snip_prev ..
-            '"', {expr = true, noremap = false, silent = true})
-  end
-}
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documetation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<c-x><c-o>'] = cmp.mapping.complete(),
+    ['<c-e>'] = cmp.mapping.abort(),
+    ['<c-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<c-j>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<c-k>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+  })
+})

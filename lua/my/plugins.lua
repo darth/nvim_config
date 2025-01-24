@@ -10,7 +10,7 @@ local plugins = {
 
   'tweekmonster/startuptime.vim',
 
-  'arcticicestudio/nord-vim',
+  'shaunsingh/nord.nvim',
 
   'tpope/vim-commentary',
   'tpope/vim-repeat',
@@ -65,8 +65,12 @@ if (vim.env.DEVMODE) then
     'neovim/nvim-lspconfig',
     'onsails/lspkind-nvim',
     'ojroques/nvim-lspfuzzy',
-    'hrsh7th/vim-vsnip',
-    'hrsh7th/nvim-compe',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/nvim-cmp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
     'squareys/vim-cmake',
     'lervag/vimtex',
     {'iamcco/markdown-preview.nvim', build = fn['mkdp#util#install']},

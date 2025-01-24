@@ -87,13 +87,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 if (env.DEVMODE) then
-  require'my.completion'.setup {
-    complete = '<c-x><c-o>',
-    confirm = '<c-y>',
-    close = '<c-e>',
-    snip_next = '<c-j>',
-    snip_prev = '<c-k>'
-  }
+  require 'my.completion'
   require 'my.lsp'
   require'lspfuzzy'.setup {}
   require'lspkind'.init {}

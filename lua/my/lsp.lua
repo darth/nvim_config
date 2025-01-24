@@ -53,8 +53,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
