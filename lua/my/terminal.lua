@@ -62,7 +62,7 @@ local function open(perc, keymap)
     })
     api.nvim_win_set_option(state.win.term, 'signcolumn', 'no')
     if (not bufexists) then
-      fn.termopen('TT=1 ' .. vim.o.shell)
+      fn.termopen(vim.o.shell, {env = {TT = 1}})
       map('nt', keymap, '<cmd>lua require("my.terminal").close()<CR>',
           {buffer = state.buf, silent = true})
     end
